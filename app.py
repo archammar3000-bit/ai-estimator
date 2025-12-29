@@ -41,7 +41,8 @@ def get_ai_data(item, qty):
         text = response.text.replace('```json', '').replace('```', '')
         return json.loads(text)
     except Exception as e:
-        return None
+    st.error(f"تفاصيل الخطأ التقني: {e}")  # هذا السطر سيكشف السبب
+    return None
 
 # --- واجهة الموقع ---
 st.title("🏗️ المرجع الهندسي الشامل (AI Powered)")
@@ -82,4 +83,5 @@ if calc_btn and item_name:
             st.error(f"📝 **ملاحظة فنية:** {data.get('notes', '-')}")
             
         else:
+
             st.error("حدث خطأ في الاتصال أو أن المفتاح لم يتم تفعيله بعد.")
